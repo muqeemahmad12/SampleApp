@@ -3,19 +3,19 @@
 
 source 'https://github.com/doceree/DocereePodSpecs.git'
 
-target 'TestApp' do
+target 'SampleApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'DocereeAdsSdk', '~> 1.1.0'
 
-  # Pods for TestApp
+  # Pods for SampleApp
 
-  target 'TestAppTests' do
+  target 'SampleAppTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'TestAppUITests' do
+  target 'SampleAppUITests' do
     # Pods for testing
   end
 

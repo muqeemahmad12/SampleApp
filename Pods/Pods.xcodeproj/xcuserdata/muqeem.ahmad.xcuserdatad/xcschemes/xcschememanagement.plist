@@ -11,21 +11,21 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Pods-TestApp-TestAppUITests.xcscheme</key>
+		<key>Pods-SampleApp-SampleAppUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Pods-TestApp.xcscheme</key>
+		<key>Pods-SampleApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Pods-TestAppTests.xcscheme</key>
+		<key>Pods-SampleAppTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

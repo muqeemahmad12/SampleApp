@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TestApp
+//  SampleApp
 //
 //  Created by Muqeem.Ahmad on 19/04/22.
 //
