@@ -1,0 +1,16 @@
+PODS:
+  - DocereeAdsSdk (1.1.0)
+
+DEPENDENCIES:
+  - DocereeAdsSdk (~> 1.1.0)
+
+SPEC REPOS:
+  https://github.com/doceree/DocereePodSpecs.git:
+    - DocereeAdsSdk
+
+SPEC CHECKSUMS:
+  DocereeAdsSdk: 333914bb3a0d005c5b97fdf7985de8d4030b292c
+
+PODFILE CHECKSUM: 4c29ff3d9195620bd902f4a04470ff64cf943739
+
+COCOAPODS: 1.11.3
