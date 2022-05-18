@@ -27,6 +27,18 @@ class ViewController: UIViewController, DocereeAdViewDelegate {
         }
     }
     
+    @IBAction func multiple(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let listVC = storyBoard.instantiateViewController(withIdentifier: "MultipleAdsVC") as! MultipleAdsVC
+        self.present(listVC, animated:true, completion:nil)
+    }
+
+    @IBAction func openList(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let listVC = storyBoard.instantiateViewController(withIdentifier: "TableViewViewController") as! TableViewViewController
+        self.present(listVC, animated:true, completion:nil)
+    }
+    
     @IBAction func logout(_ sender: Any) {
         exit(0)
     }

@@ -33,29 +33,10 @@ class AdsViewController: UIViewController, DocereeAdViewDelegate {
         adView.docereeAdUnitId = adUnitId
         adView.rootViewController = self
         adView.delegate = self
-        addBannerViewtoView(adView)
+        adView.frame = CGRect(x: 0, y: 150, width: adView.frame.width, height: adView.frame.height)
+        adView.center.x = self.view.center.x
         adView.load(DocereeAdRequest())
-        
-    }
-    
-    private func addBannerViewtoView(_ bannerAdView: DocereeAdView){
-        view.addSubview(adView)
-        view.addConstraints([
-            NSLayoutConstraint(item: bannerAdView,
-                               attribute: .bottom,
-                               relatedBy: .equal,
-                               toItem: bottomLayoutGuide,
-                               attribute: .top,
-                               multiplier: 1,
-                               constant: 0),
-            NSLayoutConstraint(item: bannerAdView,
-                               attribute: .centerX,
-                               relatedBy: .equal,
-                               toItem: view,
-                               attribute: .centerX,
-                               multiplier: 1,
-                               constant: 0)
-        ])
+        self.view.addSubview(adView)
     }
 
     func docereeAdViewDidReceiveAd(_ docereeAdView: DocereeAdView) {
