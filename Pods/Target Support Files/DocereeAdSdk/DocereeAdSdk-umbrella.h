@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double DocereeAdsSdkVersionNumber;
-FOUNDATION_EXPORT const unsigned char DocereeAdsSdkVersionString[];
+FOUNDATION_EXPORT double DocereeAdSdkVersionNumber;
+FOUNDATION_EXPORT const unsigned char DocereeAdSdkVersionString[];
 

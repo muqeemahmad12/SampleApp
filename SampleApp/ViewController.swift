@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DocereeAdsSdk
+import DocereeAdSdk
 
 class ViewController: UIViewController, DocereeAdViewDelegate {
 
