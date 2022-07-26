@@ -8,7 +8,7 @@ target 'SampleApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   #pod 'DocereeAdsSdk', '~> 1.1.3'
-  pod 'DocereeAdSdk'
+  pod 'DocereeAdSdk', '~> 1.1.9'
   #pod 'SwiftyLibMuq'
 
   # Pods for SampleApp

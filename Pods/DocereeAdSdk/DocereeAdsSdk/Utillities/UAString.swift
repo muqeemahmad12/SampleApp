@@ -1,10 +1,3 @@
-//
-//  UAString.swift
-//  IOSAdsLibrary
-//
-//  Created by dushyant pawar on 07/05/20.
-//  Copyright © 2020 Doceree. All rights reserved.
-//
 
 import Foundation
 import UIKit

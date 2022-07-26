@@ -53,15 +53,15 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
         
         adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
         adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju"
-        adView1.rootViewController = self
+//        adView1.rootViewController = self
         adView1.delegate = self
         adView1.frame = CGRect(x: 20, y: 25, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
         adView1.center.x = self.view.center.x
         adView1.load(DocereeAdRequest())
 
-        adView2 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
-        adView2.docereeAdUnitId = "DOC_4kt10kl2u9g8ju"
-        adView2.rootViewController = self
+        adView2 = DocereeAdView(with: "300 x 250", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
+        adView2.docereeAdUnitId = "DOC_fz2erpjkn5t79t4"
+//        adView2.rootViewController = self
         adView2.delegate = self
         adView2.frame = CGRect(x: 20, y: 25, width: adView2.frame.width, height: adView2.frame.height) //These two lines are required only for custom position
         adView2.center.x = self.view.center.x
@@ -69,7 +69,7 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
         
         // comment above lines and uncomment these line for list items
 //        for _ in 0..<5 {
-//            adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: .custom)
+//            adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
 //            adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju"
 //            adView1.rootViewController = self
 //            adView1.delegate = self
@@ -101,7 +101,7 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 250
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

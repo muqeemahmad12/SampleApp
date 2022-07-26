@@ -32,7 +32,7 @@ class AdsViewController: UIViewController, DocereeAdViewDelegate {
         // If you set position as .custom position then you have to add adView positoin as per your requirement
         adView = DocereeAdView(with: adSize, and: CGPoint(x: 50, y: 50), adPosition: .custom)
         adView.docereeAdUnitId = adUnitId
-        adView.rootViewController = self
+//        adView.rootViewController = self
         adView.delegate = self
         adView.frame = CGRect(x: 20, y: 150, width: adView.frame.width, height: adView.frame.height) //These two lines are required in case of custom position
         adView.center.x = self.view.center.x

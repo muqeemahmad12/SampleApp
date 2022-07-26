@@ -1,7 +1,6 @@
 
 import UIKit
 import AdSupport
-import os.log
 
 func getAdSize(for size: String?) -> AdSize {
     switch size {
@@ -44,16 +43,12 @@ func getAdTypeBySize(adSize: AdSize) -> AdType {
     }
 }
 
-func compareIfSame(presentValue: String, expectedValue: String) -> Bool {
-    return presentValue.caseInsensitiveCompare(expectedValue) == ComparisonResult.orderedSame
-}
-
 func savePlatformuid(_ newPlatormuid: String) {
-    NSKeyedArchiver.archiveRootObject(newPlatormuid, toFile: ArchivingUrl.path)
+    NSKeyedArchiver.archiveRootObject(newPlatormuid, toFile: PlatformArchivingUrl.path)
 }
 
 func getIdentifierForAdvertising() -> String? {
-    if #available(iOS 14, *){
+    if #available(iOS 14, *) {
         if (DocereeMobileAds.trackingStatus == "authorized") {
             return ASIdentifierManager.shared().advertisingIdentifier.uuidString
         } else {

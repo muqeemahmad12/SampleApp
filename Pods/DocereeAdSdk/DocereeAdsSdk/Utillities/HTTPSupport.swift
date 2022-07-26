@@ -1,9 +1,3 @@
-//
-//  HTTPSupport.swift
-//  Asset Tracker
-//
-//  Created by DK on 29/09/20.
-//
 
 import Foundation
 
@@ -37,7 +31,7 @@ enum HttpMethod: String {
     case post
 }
 
-func getHost(type: EnvironmentType) -> String?{
+func getHost(type: EnvironmentType) -> String? {
     switch type {
     case .Dev:
         return "dev-bidder.doceree.com"
@@ -50,7 +44,7 @@ func getHost(type: EnvironmentType) -> String?{
     }
 }
 
-func getDocTrackerHost(type: EnvironmentType) -> String?{
+func getDocTrackerHost(type: EnvironmentType) -> String? {
     switch type {
     case .Dev:
         return "dev-tracking.doceree.com"
@@ -68,7 +62,7 @@ enum Methods{
     case AdBlock
 }
 
-func getPath(methodName: Methods) -> String{
+func getPath(methodName: Methods) -> String {
     switch methodName{
     case .GetImage:
         return "/v1/adrequest"

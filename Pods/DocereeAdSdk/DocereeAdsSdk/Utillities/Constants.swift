@@ -1,10 +1,3 @@
-//
-//  Constants.swift
-//  DocereeAdsSdk
-//
-//  Created by Muqeem.Ahmad on 26/04/22.
-//  Copyright © 2022 Doceree. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -33,7 +26,7 @@ enum BlockLevel {
     case NotInterestedInBrandType
     case NotInterestedInClientType
     
-    var info: (blockLevelCode: String, blockLevelDesc: String){
+    var info: (blockLevelCode: String, blockLevelDesc: String) {
         switch self{
         case .AdCoveringContent:
             return ("overlappingAd", "Ad is covering the content of the website.")
@@ -49,11 +42,6 @@ enum BlockLevel {
             return ("notInterestedInClientType", "I'm not interested in seeing ads from pharmaceutical brands.")
         }
     }
-}
-
-enum TypeOfEvent: String {
-       case CPC = "CPC"
-       case CPM = "CPM"
 }
 
 enum Header: String {

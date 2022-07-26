@@ -1,16 +1,8 @@
-//
-//  PathUtility.swift
-//  DocereeAdsSdk
-//
-//  Created by Muqeem.Ahmad on 26/04/22.
-//  Copyright © 2022 Doceree. All rights reserved.
-//
 
 import Foundation
 
-
 // MARK: Archiving paths
-let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-let ArchivingUrl = DocumentsDirectory.appendingPathComponent("platformuid")
+let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+let PlatformArchivingUrl = DocumentsDirectory.appendingPathComponent("platformUId")
+let ProfileArchivingUrl = DocumentsDirectory.appendingPathComponent("hcpProfile")
 let DocereeAdsIdArchivingUrl = DocumentsDirectory.appendingPathComponent("DocereeAdsId")
-

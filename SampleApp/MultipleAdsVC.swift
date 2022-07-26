@@ -41,7 +41,7 @@ class MultipleAdsVC: UIViewController, DocereeAdViewDelegate {
         // If you set position as .custom position then you have to add adView positoin as per your requirement
         adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 50, y: 50), adPosition: AdPosition.bottom)
         adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju"
-        adView1.rootViewController = self
+//        adView1.rootViewController = self
         adView1.delegate = self
         adView1.frame = CGRect(x: 20, y: 150, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
         adView1.center.x = self.view.center.x
@@ -51,7 +51,7 @@ class MultipleAdsVC: UIViewController, DocereeAdViewDelegate {
         
         adView2 = DocereeAdView(with: "300 x 250", and: CGPoint(x: 50, y: 50), adPosition: AdPosition.top)
         adView2.docereeAdUnitId = "DOC_fz2erpjkn5t79t4"
-        adView2.rootViewController = self
+//        adView2.rootViewController = self
         adView2.delegate = self
         adView2.frame = CGRect(x: 20, y: 350, width: adView2.frame.width, height: adView2.frame.height) //These two lines are required only for custom position
         adView2.center.x = self.view.center.x

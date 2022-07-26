@@ -1,37 +1,22 @@
 
 import Foundation
 
-internal struct AdResponseForPlatform: Codable {
+internal struct AdResponse: Codable {
     let sourceURL: String?
-    
     let CBID: String?
-    
     let DIVID: String?
-    
     let ctaLink: String?
-    
     let newPlatformUid: String?
-    
     let height: String?
-    
     let width: String?
-    
     let platformUID: String?
-
     let debugMessage: String?
-    
     let version: String?
-    
     let maxAge: Int?
-    
     let passbackTag: String?
-    
     let impressionLink: String?
-    
     let IntegrationType: String?
-    
     let creativeType: String?
-    
     let errMessage: String?
     
     enum Platformuid: String{
@@ -64,6 +49,10 @@ internal struct AdResponseForPlatform: Codable {
         let custom_html = "custom_html"
         let text_ad = "text_ad"
         return compareIfSame(presentValue: givenType!, expectedValue: html) || compareIfSame(presentValue: givenType!, expectedValue: custom_html) || compareIfSame(presentValue: givenType!, expectedValue: text_ad)
+    }
+
+    func compareIfSame(presentValue: String, expectedValue: String) -> Bool {
+        return presentValue.caseInsensitiveCompare(expectedValue) == ComparisonResult.orderedSame
     }
 
 }

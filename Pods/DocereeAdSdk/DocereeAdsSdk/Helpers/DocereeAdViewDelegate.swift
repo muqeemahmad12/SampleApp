@@ -1,10 +1,3 @@
-//
-//  AdEvents.swift
-//  iosadslibrarydemo
-//
-//  Created by dushyant pawar on 01/05/20.
-//  Copyright © 2020 dushyant pawar. All rights reserved.
-//
 
 import Foundation
 import UIKit

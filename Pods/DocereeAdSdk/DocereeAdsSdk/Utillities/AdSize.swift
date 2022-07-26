@@ -1,10 +1,3 @@
-//
-//  AdSize.swift
-//  iosadslibrarydemo
-//
-//  Created by dushyant pawar on 20/04/20.
-//  Copyright © 2020 dushyant pawar. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -123,5 +116,24 @@ struct Invalid: AdSize {
     
     func getAdSizeName() -> String {
         return "INVALID"
+    }
+}
+
+// Get Add Size
+func getAddSize(adSize: AdSize) -> AdSize {
+    if adSize is Banner {
+        return Banner()
+    } else if adSize is FullBanner {
+        return FullBanner()
+    } else if adSize is MediumRectangle {
+        return MediumRectangle()
+    } else if adSize is LargeBanner {
+        return LargeBanner()
+    } else if adSize is LeaderBoard {
+        return LeaderBoard()
+    } else if adSize is SmallBanner {
+        return SmallBanner()
+    } else {
+        return Banner()
     }
 }

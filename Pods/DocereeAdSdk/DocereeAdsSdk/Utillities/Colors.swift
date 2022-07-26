@@ -1,10 +1,3 @@
-//
-//  Colors.swift
-//  DocereeAdsSdk
-//
-//  Created by Muqeem.Ahmad on 26/04/22.
-//  Copyright © 2022 Doceree. All rights reserved.
-//
 
 import UIKit
 

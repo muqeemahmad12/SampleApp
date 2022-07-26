@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         DocereeMobileAds.shared().start(completionHandler: nil)
-        DocereeMobileAds.setApplicationKey("80332546-6312-4394-a5b9-0b1029ee4789")
+//        DocereeMobileAds.setApplicationKey("9a263052-69db-423d-9523-24cb3b9d930a") // Test API Key: WhiteCoat Prod
+//        DocereeMobileAds.setApplicationKey("8b1faeef-0259-4338-bff6-b51b9c5aae53") // Live API Key: WhiteCoat Prod
+        DocereeMobileAds.setApplicationKey("80332546-6312-4394-a5b9-0b1029ee4789") // Test API Key: Doceree Dev
         return true
     }
 
