@@ -1,34 +1,34 @@
 //
-//  TableViewViewController.swift
-//  DocereeiOSMain
+//  CollectionViewViewController.swift
+//  DocereeiOSMainNew
 //
-//  Created by Muqeem.Ahmad on 17/05/22.
+//  Created by Muqeem.Ahmad on 10/08/22.
 //
 
 import UIKit
 import DocereeAdSdk
 
-class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableViewDelegate,  UITableViewDataSource {
-    
+class CollectionViewViewController: UIViewController, DocereeAdViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+
+    @IBOutlet weak var parentView: UIView!
     var adView1: DocereeAdView!
     var adView2: DocereeAdView!
     var array: [DocereeAdView] = []
-    let tableview: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = UIColor.white
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
-    }()
+    var collectionview: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Create an instance of UICollectionViewFlowLayout since you cant
+        // Initialize UICollectionView without a layout
         loginSetup()
         addCreation()
-        setupTableView()
+        setupCollectionView()
+        
     }
-    
+
     func loginSetup() {
-        let email: String = "john.doe@exmaple.com"
+        let email: String = "john.doe@example.com"
         
         //Passing hcp peofile
         let hcp = Hcp.HcpBuilder()
@@ -52,7 +52,7 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
         // Comment these lines for list of elements and uncomment below commented code
         
 //        adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
-//        adView1.docereeAdUnitId = "DOC_fz2erpjkn5t3kws"
+//        adView1.docereeAdUnitId = "DOC_3198xll778mhtn"
 //        adView1.rootViewController = self
 //        adView1.delegate = self
 //        adView1.frame = CGRect(x: 20, y: 25, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
@@ -60,7 +60,7 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
 //        adView1.load(DocereeAdRequest())
 //
 //        adView2 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: AdPosition.custom)
-//        adView2.docereeAdUnitId = "DOC_fz2erpjkn5t3kws"
+//        adView2.docereeAdUnitId = "DOC_3198xll778mhtn"
 //        adView2.rootViewController = self
 //        adView2.delegate = self
 //        adView2.frame = CGRect(x: 20, y: 25, width: adView2.frame.width, height: adView2.frame.height) //These two lines are required only for custom position
@@ -75,54 +75,63 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
 //            adView1.rootViewController = self
             adView1.delegate = self
             adView1.frame = CGRect(x: 20, y: 25, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
-            adView1.center.x = self.view.center.x
+//            adView1.center.x = self.view.center.x
             adView1.load(DocereeAdRequest())
 
             array.append(adView1)
         }
     }
     
-    func setupTableView() {
-        for i in 0..<10 {
-            tableview.register(ThirtyDayCell.self, forCellReuseIdentifier: "cellId-\(i)")
-        }
-        tableview.delegate = self
-        tableview.dataSource = self
-        view.addSubview(tableview)
+    func setupCollectionView() {
+ 
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: view.frame.width, height: 400)
+        layout.scrollDirection = .horizontal
+
+        collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionview.dataSource = self
+        collectionview.delegate = self
+//        collectionview.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionview.showsVerticalScrollIndicator = false
+        collectionview.backgroundColor = UIColor.white
+        parentView.addSubview(collectionview)
         
-        NSLayoutConstraint.activate([
-            tableview.topAnchor.constraint(equalTo: self.view.topAnchor),
-            tableview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
-        ])
+        for i in 0..<10 {
+            collectionview.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellId-\(i)")
+        }
+        
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 375, height: 150)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId-\(indexPath.row)", for: indexPath) as! ThirtyDayCell
+
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "cellId-\(indexPath.row)", for: indexPath) as! CollectionViewCell
         cell.backgroundColor = UIColor.white
         cell.dayLabel.text = "Item \(indexPath.row+1)"
-        
-        // Comment this out for list of elements and uncomment below commented code
-//        if indexPath.row == 0 {
-//            cell.addSubview(adView1)
-//        } else if indexPath.row == 1 {
-//            cell.addSubview(adView2)
-//        }
-        
-        // comment above lines and uncomment this line for list items
-        cell.addSubview(array[indexPath.row])
-        
+        cell.dayView.addSubview(array[indexPath.row])
         return cell
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
 }

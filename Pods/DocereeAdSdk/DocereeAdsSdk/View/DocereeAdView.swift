@@ -32,6 +32,11 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
     private var adWebView: WKWebView!
     
     static var didLeaveAd: Bool = false
+    var adResponseData: AdResponse?
+    var totalViewTime = 0
+    var savedViewPercentage: Float = 0.0
+    var OneSecMrcSent = false
+    
     
     lazy var adImageView: UIImageView = {
         let adImageView = UIImageView()
@@ -128,6 +133,9 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
             return
         }
         
+        totalViewTime = 0
+        savedViewPercentage = 0
+        self.OneSecMrcSent = false
         self.docereeAdRequest = docereeAdRequest
         let width: Int = Int((self.adSize?.getAdSize().width)!)
         let height: Int = Int((self.adSize?.getAdSize().height)!)
@@ -137,21 +145,56 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
             if let data = results.data {
                 self.isRichMediaAd = isRichMediaAd
                 self.createAdUI(data: data, isRichMediaAd: isRichMediaAd)
+                
+                DispatchQueue.main.async {
+                    self.startTimer(adFound: true)
+                }
+                
             } else {
                 self.delegate?.docereeAdView(self, didFailToReceiveAdWithError: DocereeAdRequestError.failedToCreateRequest)
                 self.removeAllViews()
+                
+                DispatchQueue.main.async {
+                    self.startTimer(adFound: false)
+                }
             }
         }
-        startTimer()
     }
     
     //MARK: Private methods
     
-    private func startTimer() {
+    private func startTimer(adFound: Bool) {
+
         customTimer?.stop()
         customTimer = CustomTimer { (seconds) in
+
+            if adFound {
+                let viewPercentage = checkViewability(adView: self)
+                print("final percentage: ", viewPercentage)
+                
+                // for standard: mcr
+                if viewPercentage >= 50 {
+                    self.totalViewTime += 1
+                    self.savedViewPercentage = viewPercentage
+                    if self.OneSecMrcSent == false {
+                        self.sendViewTime(standard: "mrc")
+                        self.OneSecMrcSent = true
+                    }
+                } else {
+                    self.sendViewTime(standard: "mrc")
+                }
+                
+                // for standard: custom
+                if self.adResponseData?.standard() == "custom" {
+                    if self.totalViewTime == self.adResponseData?.minViewTime && Int(viewPercentage) >= (self.adResponseData?.minViewPercentage)! {
+                        self.sendViewTime(standard: "custom")
+                    }
+                }
+            }
             if self.customTimer!.count % 30 == 0 {
                 self.customTimer?.count = 0
+                self.customTimer?.stop()
+                self.sendViewTime(standard: "mrc")
                 self.refresh()
             }
         }
@@ -159,25 +202,51 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
         customTimer?.start()
     }
     
+    func sendViewTime(standard: String) {
+        if totalViewTime > 0 && (savedViewPercentage > 50 || Int(savedViewPercentage) >= (self.adResponseData?.minViewPercentage)!) {
+            print("View Time: ", totalViewTime)
+            if adResponseData?.viewLink != nil {
+                var viewLink = adResponseData?.viewLink
+                if standard == "mrc" {
+                    if totalViewTime == 1 {
+                        viewLink = viewLink?.replacingOccurrences(of: "_viewTime", with: String(1))
+                    } else {
+                        viewLink = viewLink?.replacingOccurrences(of: "_viewTotalTime", with: String(totalViewTime))
+                    }
+                    viewLink = viewLink?.replacingOccurrences(of: "_viewPercentage", with: String(50))
+                } else {
+                    viewLink = viewLink?.replacingOccurrences(of: "_viewTime", with: String((self.adResponseData?.minViewTime)!))
+                    viewLink = viewLink?.replacingOccurrences(of: "_viewPercentage", with: String((self.adResponseData?.minViewPercentage)!))
+                }
+                viewLink = viewLink?.replacingOccurrences(of: "_std", with: standard)
+                self.docereeAdRequest?.sendAdViewability(viewLink: viewLink!)
+            }
+            if standard == "mrc" && self.OneSecMrcSent == true {
+                totalViewTime = 0
+                savedViewPercentage = 0
+            }
+        }
+    }
+    
     private func createAdUI(data: Data, isRichMediaAd: Bool) {
         let decoder = JSONDecoder()
         do {
-            let adResponseData: AdResponse = try decoder.decode(AdResponse.self, from: data)
-            if (adResponseData.sourceURL ?? "").isEmpty {
+            adResponseData = try decoder.decode(AdResponse.self, from: data)
+            if (adResponseData?.sourceURL ?? "").isEmpty {
                 self.removeAllViews()
                 return
             }
-            self.cbId = adResponseData.CBID?.components(separatedBy: "_")[0]
-            self.docereeAdUnitId = adResponseData.DIVID!
-            self.ctaLink = adResponseData.ctaLink
-            let isImpressionLinkNullOrEmpty: Bool = (adResponseData.impressionLink ?? "").isEmpty
+            self.cbId = adResponseData?.CBID?.components(separatedBy: "_")[0]
+            self.docereeAdUnitId = (adResponseData?.DIVID)!
+            self.ctaLink = adResponseData?.ctaLink
+            let isImpressionLinkNullOrEmpty: Bool = (adResponseData?.impressionLink ?? "").isEmpty
             if (!isImpressionLinkNullOrEmpty) {
-                self.docereeAdRequest?.sendAdImpression(impressionUrl: adResponseData.impressionLink!)
+                self.docereeAdRequest?.sendAdImpression(impressionUrl: (adResponseData?.impressionLink)!)
             }
             if !isRichMediaAd {
-                createSimpleAd(sourceURL: adResponseData.sourceURL)
+                createSimpleAd(sourceURL: adResponseData?.sourceURL)
             } else {
-                createRichMediaAd(sourceURL: adResponseData.sourceURL)
+                createRichMediaAd(sourceURL: adResponseData?.sourceURL)
             }
         } catch {
             self.delegate?.docereeAdView(self, didFailToReceiveAdWithError: DocereeAdRequestError.failedToCreateRequest)
@@ -355,6 +424,7 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
         DocereeAdView.self.didLeaveAd = true
         if let url = URL(string: "\(ctaLink ?? "")"), !url.absoluteString.isEmpty {
             customTimer?.stop()
+            self.sendViewTime(standard: "mrc")
             UIApplication.shared.openURL(url)
             self.removeAllViews()
         }
@@ -362,6 +432,7 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
     
     @objc func appMovedToBackground() {
         customTimer?.stop()
+        self.sendViewTime(standard: "mrc")
         if  DocereeAdView.didLeaveAd && delegate != nil {
             delegate?.docereeAdViewWillLeaveApplication(self)
         }
@@ -384,6 +455,7 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
     deinit {
         NotificationCenter.default.removeObserver(self)
         customTimer?.stop()
+        self.sendViewTime(standard: "mrc")
     }
     
     //will call on dismiss view
@@ -391,12 +463,13 @@ public final class DocereeAdView: UIView, UIApplicationDelegate, WKNavigationDel
         if window != nil {
             NotificationCenter.default.removeObserver(self)
             customTimer?.stop()
+            self.sendViewTime(standard: "mrc")
         }
     }
     
     internal func refresh() {
         self.removeAllViews()
-        if docereeAdRequest != nil {
+        if docereeAdRequest != nil && self.parentViewController != nil {
             load(self.docereeAdRequest!)
         }
     }
