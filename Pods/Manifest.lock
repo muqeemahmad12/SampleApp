@@ -1,16 +1,16 @@
 PODS:
-  - DocereeAdSdk (1.2.0)
+  - DocereeAdSdk (1.2.1)
 
 DEPENDENCIES:
-  - DocereeAdSdk (~> 1.2.0)
+  - DocereeAdSdk (~> 1.2.1)
 
 SPEC REPOS:
   trunk:
     - DocereeAdSdk
 
 SPEC CHECKSUMS:
-  DocereeAdSdk: cd1214b0ac111e58f116c8edff03ffad48974046
+  DocereeAdSdk: 33d8fea0e84a399e694ba8755127d9208ba3a9f0
 
-PODFILE CHECKSUM: 520e64e52057d9fc77390de9c3b08bfa4e75ed66
+PODFILE CHECKSUM: b179033313a2acc0e7786866ecb2e30b63299b48
 
 COCOAPODS: 1.11.3
