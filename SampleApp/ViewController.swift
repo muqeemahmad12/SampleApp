@@ -13,7 +13,7 @@ class ViewController: UIViewController, DocereeAdViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        DocereeMobileAds.shared().setEnvironment(type: .Dev)
     }
     
     @IBAction func adsClicked(_ sender: UIButton) {
