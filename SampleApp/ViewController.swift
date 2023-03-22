@@ -54,25 +54,54 @@ class ViewController: UIViewController, DocereeAdViewDelegate {
         DocereeMobileAds.clearUserData()
         exit(0)
     }
+    
     func getadId(adType: String) -> String {
-        
+        let environment = DocereeMobileAds.shared().getEnvironment()
+       
         switch adType {
         case "320 x 50":
-            return "DOC_fz2erpjkn5t3kws"
+            if environment == .Qa {
+                return "DOC_3198xll778ncs9" // QA
+            } else {
+                return "DOC_fz2erpjkn5t3kws" // Dev
+            }
         case "320 x 100":
-            return "DOC_kvy1jkmzyjpd3"
+            if environment == .Qa {
+                return "DOC_3198xll778puay" // QA
+            } else if environment == .Dev {
+                return "DOC_kvy1jkmzyjpd3" // Dev
+            } else {
+                return "DOC_17xk9fbklbg5u9jp" // Practo
+            }
         case "300 x 250":
-            return "DOC_kvy1jkmzykpav"
+            if environment == .Qa {
+                return "DOC_3198xll778lhix" // QA
+            } else if environment == .Dev {
+                return "DOC_kvy1jkmzykpav" // Dev
+            } else {
+                return "DOC_3y65rkl8vn21z2" // Locum Nest
+            }
         case "468 x 60":
-            return "DOC_fz2erpjkn5t7tar"
+            if environment == .Qa {
+                return "DOC_3198xll778r0t9" // QA
+            } else {
+                return "DOC_fz2erpjkn5t7tar" // Dev
+            }
         case "728 x 90":
-            return "DOC_kvy1jkmzym0u3"
+            if environment == .Qa {
+                return "DOC_3198xll778s0p6" // QA
+            } else {
+                return "DOC_kvy1jkmzym0u3" // Dev
+            }
         case "300 x 50":
-            return "DOC_4kt10kl2u9g8ju"
+            if environment == .Qa {
+                return "DOC_3198xll778mhtn" //QA
+            } else {
+                return "DOC_4kt10kl2u9g8ju" // Dev
+            }
         default:
             return ""
         }
-        
     }
      
 }

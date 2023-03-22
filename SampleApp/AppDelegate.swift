@@ -19,8 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DocereeMobileAds.shared().start(completionHandler: nil)
 //        DocereeMobileAds.setApplicationKey("9a263052-69db-423d-9523-24cb3b9d930a") // Test API Key: WhiteCoat Prod
 //        DocereeMobileAds.setApplicationKey("8b1faeef-0259-4338-bff6-b51b9c5aae53") // Live API Key: WhiteCoat Prod
-        DocereeMobileAds.setApplicationKey("80332546-6312-4394-a5b9-0b1029ee4789") // Test API Key: Doceree Dev
-//        DocereeMobileAds.setApplicationKey("89bb8238-498e-42ed-846f-a3b0b24b79fb") // dev env test
+//        DocereeMobileAds.setApplicationKey("95fae54b-9c6a-47e1-bd5b-c42a3b67d80a") // Test API Key: Practo
+//        DocereeMobileAds.setApplicationKey("f7b43538-6ff5-4baa-b326-32dfcfaa678c") // Live API Key: Practo
+//        DocereeMobileAds.setApplicationKey("80332546-6312-4394-a5b9-0b1029ee4789") // Test API Key: Doceree Dev
+        DocereeMobileAds.setApplicationKey("89bb8238-498e-42ed-846f-a3b0b24b79fb") // dev env test
 //        DocereeMobileAds.setApplicationKey("22de535e-c6d3-442a-a816-2c4a3e6a484a") // QA env
         return true
     }

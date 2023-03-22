@@ -37,10 +37,15 @@ extension UIImage {
         return gifImageWithData(imageData)
     }
 
-    class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
+    class func delayForImageAtIndex(_ index: Int, sourceImg: CGImageSource?) -> Double {
         var delay = 0.1
         
-        let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
+        guard let source = sourceImg else {
+            return delay
+        }
+        guard let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil) else {
+            return delay
+        }
         let gifProperties: CFDictionary = unsafeBitCast(
             CFDictionaryGetValue(cfProperties,
                                  Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()),
@@ -55,7 +60,7 @@ extension UIImage {
                                                              Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
         
-        delay = delayObject as! Double
+        delay = delayObject as? Double ?? 0.0
         
         if delay < 0.1 {
             delay = 0.1
@@ -121,7 +126,7 @@ extension UIImage {
             }
             
             let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
-                                                            source: source)
+                                                            sourceImg: source)
             delays.append(Int(delaySeconds * 1000.0)) // Seconds to ms
         }
         
