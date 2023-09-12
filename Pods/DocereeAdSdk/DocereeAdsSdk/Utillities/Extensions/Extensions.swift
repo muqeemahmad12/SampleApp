@@ -6,6 +6,8 @@ extension DocereeAdRequestError: LocalizedError {
     public var localizedDescription: String {
         switch self {
         case .failedToCreateRequest: return NSLocalizedString("Failed to load ad. Please contact support@doceree.com", comment: "")
+        case .adNotFound:
+            return NSLocalizedString("Ad not found", comment: "")
         }
     }
 }
@@ -51,50 +53,6 @@ extension NotificationCenter {
     func setObserver(observer: Any, selector: Selector, name: NSNotification.Name, object: AnyObject?){
         NotificationCenter.default.removeObserver(observer, name: name, object: object)
         NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: object)
-    }
-}
-
-extension DateFormatter {
-
-    static let iso8601DateFormatter: DateFormatter = {
-        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
-        let iso8601DateFormatter = DateFormatter()
-        iso8601DateFormatter.locale = enUSPOSIXLocale
-        iso8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        return iso8601DateFormatter
-    }()
-
-    static let iso8601WithoutMillisecondsDateFormatter: DateFormatter = {
-        let enUSPOSIXLocale = Locale(identifier: "en_US_POSIX")
-        let iso8601DateFormatter = DateFormatter()
-        iso8601DateFormatter.locale = enUSPOSIXLocale
-        iso8601DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        return iso8601DateFormatter
-    }()
-
-    static func date(fromISO8601String string: String) -> Date? {
-        if let dateWithMilliseconds = iso8601DateFormatter.date(from: string) {
-            return dateWithMilliseconds
-        }
-
-        if let dateWithoutMilliseconds = iso8601WithoutMillisecondsDateFormatter.date(from: string) {
-            return dateWithoutMilliseconds
-        }
-
-        return nil
-    }
-}
-
-extension Date {
-    static func getFormattedDate() -> String {
-        let date = Date()
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        let dateString = df.string(from: date)
-
-        return dateString
     }
 }
 

@@ -9,7 +9,8 @@ import UIKit
 import DocereeAdSdk
 
 class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableViewDelegate,  UITableViewDataSource {
-    
+    @IBOutlet var sideMenuBtn: UIBarButtonItem!
+    @IBOutlet weak var parentView: UIView!
     var adView1: DocereeAdView!
     var adView2: DocereeAdView!
     var array: [DocereeAdView] = []
@@ -22,31 +23,17 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginSetup()
+        
+        
+        // Menu Button Tint Color
+        navigationController?.navigationBar.tintColor = .white
+        sideMenuBtn.target = revealViewController()
+        sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
+        
         addCreation()
         setupTableView()
     }
-    
-    func loginSetup() {
-        let email: String = "john.doe@exmaple.com"
-        
-        //Passing hcp peofile
-        let hcp = Hcp.HcpBuilder()
-            .setFirstName(firstName: "John")
-            .setLastName(lastName: "Doe")
-            .setSpecialization(specialization: "Anesthesiology")
-            .setCity(city: "Mumbai")
-            .setZipCode(zipCode: "400004")
-            .setGender(gender: "Male")
-            .setMciRegistrationNumber(mciRegistrationNumber: "ABCDE12345")
-            .setEmail(email: email)
-            .setMobile(mobile: "9999999999")
-            .build()
-        
-        
-        DocereeMobileAds.login(with: hcp)
-    }
-    
+
     func addCreation() {
         
         // Comment these lines for list of elements and uncomment below commented code
@@ -70,8 +57,11 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
         // comment above lines and uncomment these line for list items
         for _ in 0..<10 {
             adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: .custom)
-//            adView1.docereeAdUnitId = "DOC_3198xll778mhtn" // QA
-            adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" // Dev
+            if DocereeMobileAds.shared().getEnvironment() == .Qa {
+                adView1.docereeAdUnitId = "DOC_3198xll778mhtn" //QA
+            } else {
+                adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" //Dev
+            }
 //            adView1.rootViewController = self
             adView1.delegate = self
             adView1.frame = CGRect(x: 20, y: 25, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
@@ -84,20 +74,20 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
     
     func setupTableView() {
         for i in 0..<10 {
-            tableview.register(ThirtyDayCell.self, forCellReuseIdentifier: "cellId-\(i)")
+            tableview.register(TableAdCell.self, forCellReuseIdentifier: "cellId-\(i)")
         }
         tableview.delegate = self
         tableview.dataSource = self
         view.addSubview(tableview)
-        
+
         NSLayoutConstraint.activate([
-            tableview.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 185),
             tableview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
         ])
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 1
         return 10
@@ -108,7 +98,7 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId-\(indexPath.row)", for: indexPath) as! ThirtyDayCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId-\(indexPath.row)", for: indexPath) as! TableAdCell
         cell.backgroundColor = UIColor.white
         cell.dayLabel.text = "Item \(indexPath.row+1)"
         
@@ -123,6 +113,10 @@ class TableViewViewController: UIViewController, DocereeAdViewDelegate, UITableV
         cell.addSubview(array[indexPath.row])
         
         return cell
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
 }

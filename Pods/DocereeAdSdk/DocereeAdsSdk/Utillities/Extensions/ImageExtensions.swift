@@ -26,11 +26,9 @@ extension UIImage {
     public class func gifImageWithURL(_ gifUrl:String) -> UIImage? {
         guard let bundleURL:URL = URL(string: gifUrl)
         else {
-            //                print("image named \"\(gifUrl)\" doesn't exist")
             return nil
         }
         guard let imageData = try? Data(contentsOf: bundleURL) else {
-            //            print("image named \"\(gifUrl)\" into NSData")
             return nil
         }
         
@@ -51,16 +49,20 @@ extension UIImage {
                                  Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()),
             to: CFDictionary.self)
         
-        var delayObject: AnyObject = unsafeBitCast(
+        let delayObject: AnyObject? = unsafeBitCast(
             CFDictionaryGetValue(gifProperties,
                                  Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()),
             to: AnyObject.self)
-        if delayObject.doubleValue == 0 {
-            delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
-                                                             Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+        if delayObject != nil {
+            let dblValue = Double(delayObject?.doubleValue ?? 0.0)
+            if dblValue == 0.0 {
+                let delayObject: AnyObject? = unsafeBitCast(CFDictionaryGetValue(gifProperties,
+                                                                                 Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+                if delayObject != nil {
+                    delay = Double(delayObject as? Double ?? 0.0)
+                }
+            }
         }
-        
-        delay = delayObject as? Double ?? 0.0
         
         if delay < 0.1 {
             delay = 0.1

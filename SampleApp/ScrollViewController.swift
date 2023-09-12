@@ -2,7 +2,7 @@ import UIKit
 import DocereeAdSdk
 
 class ScrollViewController: UIViewController, DocereeAdViewDelegate {
-    
+    @IBOutlet var sideMenuBtn: UIBarButtonItem!
     @IBOutlet weak var superParentView: UIView!
     var parentView: UIView!
     var adView1: DocereeAdView!
@@ -18,6 +18,12 @@ class ScrollViewController: UIViewController, DocereeAdViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        
+        // Menu Button Tint Color
+        navigationController?.navigationBar.tintColor = .white
+        sideMenuBtn.target = revealViewController()
+        sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
+        
         parentView = UIView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width - 80, height: self.view.frame.height - 200))
         self.view.addSubview(parentView)
         
@@ -32,45 +38,36 @@ class ScrollViewController: UIViewController, DocereeAdViewDelegate {
             
         scrollView.addSubview(imageView)
         parentView.addSubview(scrollView)
-        
-        
-        let email: String = "john.doe@example.com"
-        
-        //Passing hcp peofile
-        let hcp = Hcp.HcpBuilder()
-            .setFirstName(firstName: "John")
-            .setLastName(lastName: "Doe")
-            .setSpecialization(specialization: "Anesthesiology")
-            .setCity(city: "Mumbai")
-            .setZipCode(zipCode: "400004")
-            .setGender(gender: "Male")
-            .setMciRegistrationNumber(mciRegistrationNumber: "ABCDE12345")
-            .setEmail(email: email)
-            .setMobile(mobile: "9999999999")
-            .build()
-        
-        DocereeMobileAds.login(with: hcp)
 
+        
         // You can pass adPosition .top, .bottom or .custom
         // If you set position as .custom position then you have to add adView positoin as per your requirement
         adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 50, y: 50), adPosition: AdPosition.custom)
-//        adView1.docereeAdUnitId = "DOC_3198xll778mhtn" // QA
-        adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" // Dev
+        if DocereeMobileAds.shared().getEnvironment() == .Qa {
+            adView1.docereeAdUnitId = "DOC_3198xll778mhtn" //QA
+        } else {
+            adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" //Dev
+        }
         adView1.rootViewController = self
         adView1.delegate = self
         adView1.frame = CGRect(x: 200, y: 550, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position
 //        adView1.center.x = self.view.center.x
+        adView1.backgroundColor = .red
         addBannerViewtoView(adView1)
         adView1.load(DocereeAdRequest())
         
         
         adView2 = DocereeAdView(with: "300 x 250", and: CGPoint(x: 50, y: 50), adPosition: AdPosition.custom)
-//        adView2.docereeAdUnitId = "DOC_3198xll778lhix" // QA
-        adView2.docereeAdUnitId = "DOC_kvy1jkmzykpav" // Dev
+        if DocereeMobileAds.shared().getEnvironment() == .Qa {
+            adView1.docereeAdUnitId = "DOC_3198xll778lhix" //QA
+        } else {
+            adView1.docereeAdUnitId = "DOC_kvy1jkmzykpav" //Dev
+        }
         adView2.rootViewController = self
         adView2.delegate = self
         adView2.frame = CGRect(x: 200, y: 750, width: adView2.frame.width, height: adView2.frame.height) //These two lines are required only for custom position
 //        adView2.center.x = self.view.center.x
+        adView2.backgroundColor = .blue
         addBannerViewtoView(adView2)
         adView2.load(DocereeAdRequest())
         

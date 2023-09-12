@@ -9,7 +9,7 @@ import UIKit
 import DocereeAdSdk
 
 class CollectionViewViewController: UIViewController, DocereeAdViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
-
+    @IBOutlet var sideMenuBtn: UIBarButtonItem!
     @IBOutlet weak var parentView: UIView!
     var adView1: DocereeAdView!
     var adView2: DocereeAdView!
@@ -18,35 +18,20 @@ class CollectionViewViewController: UIViewController, DocereeAdViewDelegate, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        // Menu Button Tint Color
+        navigationController?.navigationBar.tintColor = .white
+        sideMenuBtn.target = revealViewController()
+        sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
+        
         // Create an instance of UICollectionViewFlowLayout since you cant
         // Initialize UICollectionView without a layout
-        loginSetup()
         addCreation()
         setupCollectionView()
         
     }
 
-    func loginSetup() {
-        let email: String = "john.doe@example.com"
-        
-        //Passing hcp peofile
-        let hcp = Hcp.HcpBuilder()
-            .setFirstName(firstName: "John")
-            .setLastName(lastName: "Doe")
-            .setSpecialization(specialization: "Anesthesiology")
-            .setCity(city: "Mumbai")
-            .setZipCode(zipCode: "400004")
-            .setGender(gender: "Male")
-            .setMciRegistrationNumber(mciRegistrationNumber: "ABCDE12345")
-            .setEmail(email: email)
-            .setMobile(mobile: "9999999999")
-            .build()
-        
-        
-        DocereeMobileAds.login(with: hcp)
-    }
-    
     func addCreation() {
         
         // Comment these lines for list of elements and uncomment below commented code
@@ -70,8 +55,11 @@ class CollectionViewViewController: UIViewController, DocereeAdViewDelegate, UIC
         // comment above lines and uncomment these line for list items
         for _ in 0..<10 {
             adView1 = DocereeAdView(with: "300 x 50", and: CGPoint(x: 0, y: 0), adPosition: .custom)
-//            adView1.docereeAdUnitId = "DOC_3198xll778mhtn" // QA
-            adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" // Dev
+            if DocereeMobileAds.shared().getEnvironment() == .Qa {
+                adView1.docereeAdUnitId = "DOC_3198xll778mhtn" //QA
+            } else {
+                adView1.docereeAdUnitId = "DOC_4kt10kl2u9g8ju" //Dev
+            }
 //            adView1.rootViewController = self
             adView1.delegate = self
             adView1.frame = CGRect(x: 20, y: 25, width: adView1.frame.width, height: adView1.frame.height) //These two lines are required only for custom position

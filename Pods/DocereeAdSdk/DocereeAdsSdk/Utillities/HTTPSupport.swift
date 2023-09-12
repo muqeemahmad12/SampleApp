@@ -38,9 +38,9 @@ func getHost(type: EnvironmentType) -> String? {
     case .Local:
         return "10.0.3.2"
     case .Qa:
-        return "qa-bidder.doceree.com"
+        return "qa-ad-test.doceree.com"
     case .Prod:
-        return "bidder.doceree.com"
+        return "dai.doceree.com"
     }
 }
 
@@ -51,9 +51,9 @@ func getDocTrackerHost(type: EnvironmentType) -> String? {
     case .Local:
         return "10.0.3.2"
     case .Qa:
-        return "qa-tracking.doceree.com"
+        return "qa-ad-test.doceree.com"
     case .Prod:
-        return "tracking.doceree.com"
+        return "dai.doceree.com"
     }
 }
 
@@ -66,7 +66,7 @@ func getDataCollectionHost(type: EnvironmentType) -> String? {
     case .Qa:
         return "qa-identity.doceree.com"
     case .Prod:
-        return "qa-identity.doceree.com"
+        return "dai.doceree.com"
     }
 }
 
@@ -76,13 +76,18 @@ enum Methods{
     case CollectData
 }
 
-func getPath(methodName: Methods) -> String {
+func getPath(methodName: Methods, type: EnvironmentType = .Dev) -> String {
     switch methodName{
     case .GetImage:
-        return "/v1/adrequest"
+        return "/drs/quest"
     case .AdBlock:
-        return "/saveadblockinfo"
+        return "/drs/saveAdBlockInfo"
     case .CollectData:
-        return "/curator"
+        switch type {
+        case .Dev, .Local, .Qa:
+            return "/curator"
+        case .Prod:
+            return "/dop/curator"
+        }
     }
 }

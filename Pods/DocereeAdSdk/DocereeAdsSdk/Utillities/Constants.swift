@@ -55,14 +55,28 @@ enum Header: String {
     case header_app_version = "app-version"
     case header_lib_version = "lib-version"
     case header_app_bundle = "app-bundle"
+    case header_origin = "origin"
+    case header_refer = "refer"
 }
 
-enum QueryParamsForGetImage: String {
-    case id = "id"
-    case size = "size"
-    case loggedInUser = "loggedInUser"
-    case platformType = "platformType"
-    case appKey = "appKey"
+enum QueryParamsForAdRequest: String {
+    case appKey = "appkey"
+    case userId = "userid"
+    case email = "email"
+    case firstName = "firstname"
+    case lastName = "lastname"
+    case specialization = "specialization"
+    case hcpId = "hcpid"
+    case hashedHcpId = "hashedhcpid"
+    case gender = "gender"
+    case city = "city"
+    case state = "state"
+    case zipCode = "zipcode"
+    case hashedNPI = "hashedNPI"
+    case adUnit = "adunit"
+    case br = "br"
+    case cdt = "cdt"
+    case privacyConsent = "privacyConsent"
 }
 
 enum AdBlockService: String {
@@ -91,16 +105,20 @@ public enum AdPosition {
 }
 
 enum CollectDataService: String {
-    case bundleID = "bnd"
-    case platformID = "pl"
+    case advertisingId = "uid"
+    case bundleId = "bnd"
+    case platformId = "pl"
+    case hcpId = "hcd"
     case dataSource = "sr"
+    case screenPath = "pu"
     case editorialTags = "mt"
-    case event = "el"
     case localTimestamp = "lt"
+    case installedApps = "ia"
+    case privateMode = "pv"
+    case gps = "gps"
+    case event = "el"
     case platformData = "pd"
     case partnerData = "qp"
-    case advertisingID = "uid"
-    case privateMode = "pv"
 }
 
 enum Event: String {
