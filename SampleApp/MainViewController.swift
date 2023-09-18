@@ -105,6 +105,7 @@ class MainViewController: UIViewController {
     }
 
     // Call this Button Action from the View Controller you want to Expand/Collapse when you tap a button
+    @objc
     @IBAction open func revealSideMenu() {
         self.sideMenuState(expanded: self.isExpanded ? false : true)
     }
@@ -168,13 +169,16 @@ extension MainViewController: SideMenuViewControllerDelegate {
             // Data Collection
             self.showViewController(viewController: UINavigationController.self, storyboardId: "DataCollectionNavID")
         case 7:
+            // Data Collection
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "ObjectiveCNavID")
+        case 8:
             // Exit
             DocereeMobileAds.clearUserData()
             exit(0)
         default:
             break
         }
-
+        
         // Collapse side menu with animation
         DispatchQueue.main.async { self.sideMenuState(expanded: false) }
     }

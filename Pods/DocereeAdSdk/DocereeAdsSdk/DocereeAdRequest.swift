@@ -123,7 +123,7 @@ public final class DocereeAdRequest {
             }
             let task = session.dataTask(with: urlRequest) {(data, response, error) in
                 guard let data = data else { return }
-//                data.printJSON()
+                data.printJSON()
                 let urlResponse = response as! HTTPURLResponse
                 if urlResponse.statusCode == 200 {
                     do {

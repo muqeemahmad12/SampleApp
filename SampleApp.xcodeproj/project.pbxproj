@@ -27,6 +27,7 @@
 		54005DFF29CB267700B7952E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54005DFC29CB267700B7952E /* FeedCell.swift */; };
 		54005E0229CB268B00B7952E /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54005E0029CB268B00B7952E /* SingleViewController.swift */; };
 		54005E0329CB268B00B7952E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54005E0129CB268B00B7952E /* CheckBox.swift */; };
+		54098A852AB0850800FB6E11 /* NewAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54098A842AB0850800FB6E11 /* NewAdViewController.m */; };
 		545322432A9F62AC004C9B58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545322422A9F62AC004C9B58 /* Assets.xcassets */; };
 		54C714DE280EA443000E53E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714DD280EA443000E53E0 /* AppDelegate.swift */; };
 		54C714E0280EA443000E53E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714DF280EA443000E53E0 /* SceneDelegate.swift */; };
@@ -35,6 +36,7 @@
 		54C714F5280EA443000E53E0 /* TestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714F4280EA443000E53E0 /* TestAppTests.swift */; };
 		54C714FF280EA443000E53E0 /* TestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714FE280EA443000E53E0 /* TestAppUITests.swift */; };
 		54C71501280EA443000E53E0 /* TestAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C71500280EA443000E53E0 /* TestAppUITestsLaunchTests.swift */; };
+		54F93C972AB08F1500BA4912 /* SampleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F93C962AB08F1500BA4912 /* SampleClass.swift */; };
 		E62E9F584CDA5F06C39E62F6 /* Pods_SampleAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032DEA52781461209C3876A5 /* Pods_SampleAppTests.framework */; };
 		F1EB4A886D3F4EB9CC03F31C /* Pods_SampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAE27254A0840A2081E799E /* Pods_SampleApp.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,9 @@
 		54005DFC29CB267700B7952E /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		54005E0029CB268B00B7952E /* SingleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleViewController.swift; sourceTree = "<group>"; };
 		54005E0129CB268B00B7952E /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		54098A802AB083EE00FB6E11 /* SampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		54098A832AB0850800FB6E11 /* NewAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAdViewController.h; sourceTree = "<group>"; };
+		54098A842AB0850800FB6E11 /* NewAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAdViewController.m; sourceTree = "<group>"; };
 		545322422A9F62AC004C9B58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54C714DA280EA443000E53E0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C714DD280EA443000E53E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		54C714FA280EA443000E53E0 /* SampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C714FE280EA443000E53E0 /* TestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppUITests.swift; sourceTree = "<group>"; };
 		54C71500280EA443000E53E0 /* TestAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		54F93C962AB08F1500BA4912 /* SampleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClass.swift; sourceTree = "<group>"; };
 		568F16A3BF90FDFF2B86EEBB /* Pods-TestApp-TestAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp-TestAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-TestApp-TestAppUITests/Pods-TestApp-TestAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		75A2B538D3AC236EE6FA4810 /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
 		7DEC04A3935FD136D256F922 /* Pods_SampleApp_SampleAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleApp_SampleAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +205,9 @@
 				54005DDC29CB261F00B7952E /* SlotListViewController.swift */,
 				54005DE229CB262000B7952E /* TableAdCell.swift */,
 				54005DDD29CB261F00B7952E /* TableViewViewController.swift */,
+				54098A832AB0850800FB6E11 /* NewAdViewController.h */,
+				54098A842AB0850800FB6E11 /* NewAdViewController.m */,
+				54F93C962AB08F1500BA4912 /* SampleClass.swift */,
 				54005DF929CB266D00B7952E /* News Feed */,
 				54005DEF29CB264300B7952E /* SideMenu */,
 				54005E0129CB268B00B7952E /* CheckBox.swift */,
@@ -207,6 +216,7 @@
 				54C714E3280EA443000E53E0 /* Main.storyboard */,
 				54C714E8280EA443000E53E0 /* LaunchScreen.storyboard */,
 				54C714EB280EA443000E53E0 /* Info.plist */,
+				54098A802AB083EE00FB6E11 /* SampleApp-Bridging-Header.h */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -330,6 +340,7 @@
 				TargetAttributes = {
 					54C714D9280EA443000E53E0 = {
 						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1430;
 					};
 					54C714EF280EA443000E53E0 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -500,12 +511,14 @@
 			files = (
 				54005DE629CB262000B7952E /* SlotListViewController.swift in Sources */,
 				54C714DE280EA443000E53E0 /* AppDelegate.swift in Sources */,
+				54098A852AB0850800FB6E11 /* NewAdViewController.m in Sources */,
 				54005DFF29CB267700B7952E /* FeedCell.swift in Sources */,
 				54005DEA29CB262000B7952E /* CollectionViewCell.swift in Sources */,
 				54005DE929CB262000B7952E /* DataCollectionViewController.swift in Sources */,
 				54005DF329CB265000B7952E /* SideMenuViewController.swift in Sources */,
 				54C714E0280EA443000E53E0 /* SceneDelegate.swift in Sources */,
 				54005E0329CB268B00B7952E /* CheckBox.swift in Sources */,
+				54F93C972AB08F1500BA4912 /* SampleClass.swift in Sources */,
 				54005DEC29CB262000B7952E /* TableAdCell.swift in Sources */,
 				54005DED29CB262000B7952E /* CollectionViewViewController.swift in Sources */,
 				54005DEE29CB262000B7952E /* ScrollViewController.swift in Sources */,
@@ -693,6 +706,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -714,6 +728,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApp/SampleApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -726,6 +742,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -747,6 +764,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SampleApp/SampleApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
