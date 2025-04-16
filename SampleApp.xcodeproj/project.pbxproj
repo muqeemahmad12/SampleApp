@@ -28,7 +28,9 @@
 		54005E0229CB268B00B7952E /* SingleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54005E0029CB268B00B7952E /* SingleViewController.swift */; };
 		54005E0329CB268B00B7952E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54005E0129CB268B00B7952E /* CheckBox.swift */; };
 		54098A852AB0850800FB6E11 /* NewAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54098A842AB0850800FB6E11 /* NewAdViewController.m */; };
+		543F3D012BE8B45500860203 /* KetchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F3D002BE8B45500860203 /* KetchViewController.swift */; };
 		545322432A9F62AC004C9B58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545322422A9F62AC004C9B58 /* Assets.xcassets */; };
+		5463A5CC2DAEA74A00B00D44 /* HcpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463A5CB2DAEA74A00B00D44 /* HcpViewController.swift */; };
 		54C714DE280EA443000E53E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714DD280EA443000E53E0 /* AppDelegate.swift */; };
 		54C714E0280EA443000E53E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C714DF280EA443000E53E0 /* SceneDelegate.swift */; };
 		54C714E5280EA443000E53E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C714E3280EA443000E53E0 /* Main.storyboard */; };
@@ -86,7 +88,9 @@
 		54098A802AB083EE00FB6E11 /* SampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		54098A832AB0850800FB6E11 /* NewAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewAdViewController.h; sourceTree = "<group>"; };
 		54098A842AB0850800FB6E11 /* NewAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewAdViewController.m; sourceTree = "<group>"; };
+		543F3D002BE8B45500860203 /* KetchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KetchViewController.swift; sourceTree = "<group>"; };
 		545322422A9F62AC004C9B58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5463A5CB2DAEA74A00B00D44 /* HcpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HcpViewController.swift; sourceTree = "<group>"; };
 		54C714DA280EA443000E53E0 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C714DD280EA443000E53E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54C714DF280EA443000E53E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,8 +204,10 @@
 				54005DDF29CB261F00B7952E /* DataCollectionViewController.swift */,
 				54005DE129CB262000B7952E /* HomeViewController.swift */,
 				54005DDE29CB261F00B7952E /* MainViewController.swift */,
+				543F3D002BE8B45500860203 /* KetchViewController.swift */,
 				54005DDB29CB261F00B7952E /* MultipleAdsVC.swift */,
 				54005DE429CB262000B7952E /* ScrollViewController.swift */,
+				5463A5CB2DAEA74A00B00D44 /* HcpViewController.swift */,
 				54005DDC29CB261F00B7952E /* SlotListViewController.swift */,
 				54005DE229CB262000B7952E /* TableAdCell.swift */,
 				54005DDD29CB261F00B7952E /* TableViewViewController.swift */,
@@ -515,6 +521,7 @@
 				54005DFF29CB267700B7952E /* FeedCell.swift in Sources */,
 				54005DEA29CB262000B7952E /* CollectionViewCell.swift in Sources */,
 				54005DE929CB262000B7952E /* DataCollectionViewController.swift in Sources */,
+				543F3D012BE8B45500860203 /* KetchViewController.swift in Sources */,
 				54005DF329CB265000B7952E /* SideMenuViewController.swift in Sources */,
 				54C714E0280EA443000E53E0 /* SceneDelegate.swift in Sources */,
 				54005E0329CB268B00B7952E /* CheckBox.swift in Sources */,
@@ -529,6 +536,7 @@
 				54005DE529CB262000B7952E /* MultipleAdsVC.swift in Sources */,
 				54005DE729CB262000B7952E /* TableViewViewController.swift in Sources */,
 				54005DF229CB265000B7952E /* SideMenuModel.swift in Sources */,
+				5463A5CC2DAEA74A00B00D44 /* HcpViewController.swift in Sources */,
 				54005DFD29CB267700B7952E /* NewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

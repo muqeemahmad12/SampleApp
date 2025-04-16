@@ -28,7 +28,9 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Scroll View"),
         SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Collection View"),
         SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Data Collection"),
+        SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Hcp Validation"),
         SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Objective-C"),
+        SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Ketch SDK"),
         SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Logout")
     ]
 

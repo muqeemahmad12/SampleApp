@@ -74,9 +74,13 @@ enum Methods{
     case GetImage
     case AdBlock
     case CollectData
+    case GetHcpValidation
+    case UpdateHcpValidation
+    case PatientSession
 }
 
 func getPath(methodName: Methods, type: EnvironmentType = .Dev) -> String {
+    
     switch methodName{
     case .GetImage:
         return "/drs/quest"
@@ -88,6 +92,12 @@ func getPath(methodName: Methods, type: EnvironmentType = .Dev) -> String {
             return "/curator"
         case .Prod:
             return "/dop/curator"
-        }
+    }
+    case .GetHcpValidation:
+        return "/dop/getHcpSelfValidation"
+    case .UpdateHcpValidation:
+        return "/dop/updateHcpSelfValidation"
+    case .PatientSession:
+        return "/drs/nEvent"
     }
 }

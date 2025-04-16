@@ -42,7 +42,8 @@ class SlotListViewController: UIViewController, DocereeAdViewDelegate {
                 return "DOC-445-1" // QA
 //                return "DOC_3198xll778ncs9" // QA
             } else {
-                return "DOC-18-1" // QA
+                return "DOC-1252-1" // Prod
+//                return "DOC-18-1" // QA
 //                return "DOC_fz2erpjkn5t3kws" // Dev
             }
         case "320 x 100":

@@ -30,26 +30,29 @@ class HomeViewController: UIViewController {
         prodCheckBoxBtnOutlet.isChecked = true
         
         let email: String = "john.doe@example.com"
-//        let nip: String = "ABCDE12345"
-        let gmc: String = "1234567"
+        let hcpId: String = "ABCDE12345"
         
         //Passing hcp peofile
         let hcp = Hcp.HcpBuilder()
             .setFirstName(firstName: "John")
             .setLastName(lastName: "Doe")
-            .setSpecialization(specialization: "Anesthesiology")
+            .setSpecialization(specialization: "Pediatrics")
             .setOrganisation(organisation: "Apollo")
             .setCity(city: "Mumbai")
             .setZipCode(zipCode: "400004")
             .setGender(gender: "Male")
-            .setGmc(gmc: gmc)
-            .setHashedGMC(hashedGMC: gmc.sha256())
-            .setMciRegistrationNumber(mciRegistrationNumber: "ABCDE12345")
-//            .setNpi(npi: nip)
-//            .setHashedNPI(hashedNPI: nip.sha256())
+            .setGmc(gmc: hcpId)
+            .setHashedGMC(hashedGMC: hcpId.sha256())
+            .setMciRegistrationNumber(mciRegistrationNumber: hcpId)
+            .setNpi(npi: nil)
+            .setHashedNPI(hashedNPI: nil)
             .setEmail(email: email)
             .setHashedEmail(hashedEmail: email.sha256())
             .setMobile(mobile: "9999999999")
+            .setState(state: "Delhi")
+            .setCountry(country: "India")
+            .setHcpId(hcpId: hcpId)
+            .setHashedHcpId(hashedHcpId: hcpId.sha256())
             .build()
         
         DocereeMobileAds.login(with: hcp)

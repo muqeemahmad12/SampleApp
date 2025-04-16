@@ -169,9 +169,15 @@ extension MainViewController: SideMenuViewControllerDelegate {
             // Data Collection
             self.showViewController(viewController: UINavigationController.self, storyboardId: "DataCollectionNavID")
         case 7:
+            // Hcp Validation
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "HcpNavID")
+        case 8:
             // Data Collection
             self.showViewController(viewController: UINavigationController.self, storyboardId: "ObjectiveCNavID")
-        case 8:
+        case 9:
+            // Ketch SDK
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "KetchNavID")
+        case 10:
             // Exit
             DocereeMobileAds.clearUserData()
             exit(0)

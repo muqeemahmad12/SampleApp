@@ -36,13 +36,9 @@ public final class DocereeAdRequest {
     // MARK: internal methods
     internal func requestAd(_ userId: String!, _ adUnitId: String!, _ size: String!, completion: @escaping(_ results: Results,
                                                                                         _ isRichMediaAd: Bool) -> Void) {
-        guard let appKey = NSKeyedUnarchiver.unarchiveObject(withFile: DocereeAdsIdArchivingUrl.path) as? String else {
-            if #available(iOS 10.0, *) {
-                os_log("Error: Missing DocereeIdentifier key!", log: .default, type: .error)
-            } else {
-                // Fallback on earlier versions
-                print("Error: Missing DocereeIdentifier key!")
-            }
+       
+        guard let appKey = DocereeMobileAds().loadDocereeIdentifier(from: DocereeAdsIdArchivingUrl) else {
+            // Handle missing key
             return
         }
 
@@ -69,14 +65,14 @@ public final class DocereeAdRequest {
 
             //header
             self.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-            self.requestHttpHeaders.add(value: UAString.init().UAString(), forKey: Header.header_user_agent.rawValue)
-            self.requestHttpHeaders.add(value: advertisementId!, forKey: Header.header_advertising_id.rawValue)
-            self.requestHttpHeaders.add(value: self.isVendorId ? "1" : "0", forKey: Header.is_vendor_id.rawValue)
-            self.requestHttpHeaders.add(value: DocereeMobileAds.trackingStatus, forKey: Header.header_is_ad_tracking_enabled.rawValue)
-            self.requestHttpHeaders.add(value: Bundle.main.displayName!, forKey: Header.header_app_name.rawValue)
-            self.requestHttpHeaders.add(value: Bundle.main.bundleIdentifier!, forKey: Header.header_app_bundle.rawValue)
-            self.requestHttpHeaders.add(value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String, forKey: Header.header_app_version.rawValue)
-            self.requestHttpHeaders.add(value: sdkVersion, forKey: Header.header_lib_version.rawValue)
+            self.requestHttpHeaders.add(value: UAString.init().UAString(), forKey: HeaderEnum.header_user_agent.rawValue)
+            self.requestHttpHeaders.add(value: advertisementId!, forKey: HeaderEnum.header_advertising_id.rawValue)
+            self.requestHttpHeaders.add(value: self.isVendorId ? "1" : "0", forKey: HeaderEnum.is_vendor_id.rawValue)
+            self.requestHttpHeaders.add(value: DocereeMobileAds.trackingStatus, forKey: HeaderEnum.header_is_ad_tracking_enabled.rawValue)
+            self.requestHttpHeaders.add(value: Bundle.main.displayName!, forKey: HeaderEnum.header_app_name.rawValue)
+            self.requestHttpHeaders.add(value: Bundle.main.bundleIdentifier!, forKey: HeaderEnum.header_app_bundle.rawValue)
+            self.requestHttpHeaders.add(value: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String, forKey: HeaderEnum.header_app_version.rawValue)
+            self.requestHttpHeaders.add(value: sdkVersion, forKey: HeaderEnum.header_lib_version.rawValue)
 
             // query params
             let josnObject: [String : Any] = [
@@ -91,13 +87,15 @@ public final class DocereeAdRequest {
                 QueryParamsForAdRequest.gender.rawValue : loggedInUser.gender ?? "",
                 QueryParamsForAdRequest.city.rawValue : loggedInUser.city ?? "",
                 QueryParamsForAdRequest.state.rawValue : loggedInUser.state ?? "",
+                QueryParamsForAdRequest.country.rawValue : loggedInUser.country ?? "",
                 QueryParamsForAdRequest.zipCode.rawValue : loggedInUser.zipCode ?? "",
                 QueryParamsForAdRequest.adUnit.rawValue : adUnitId ?? "",
-                QueryParamsForAdRequest.br.rawValue : "",
+//                QueryParamsForAdRequest.br.rawValue : PatientSession().getBr(),
                 QueryParamsForAdRequest.cdt.rawValue : "",
                 QueryParamsForAdRequest.privacyConsent.rawValue: 1
             ]
 
+            print("josnObject: ", josnObject)
             let body = josnObject
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
@@ -123,7 +121,7 @@ public final class DocereeAdRequest {
             }
             let task = session.dataTask(with: urlRequest) {(data, response, error) in
                 guard let data = data else { return }
-                data.printJSON()
+//                data.printJSON()
                 let urlResponse = response as! HTTPURLResponse
                 if urlResponse.statusCode == 200 {
                     do {
@@ -202,7 +200,7 @@ public final class DocereeAdRequest {
         let ua: String = UAString.init().UAString()
         // headers
         self.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-        self.requestHttpHeaders.add(value: UAString.init().UAString(), forKey: Header.header_user_agent.rawValue)
+        self.requestHttpHeaders.add(value: UAString.init().UAString(), forKey: HeaderEnum.header_user_agent.rawValue)
         
         // query params
         var httpBodyParameters = RestEntity()
@@ -220,7 +218,7 @@ public final class DocereeAdRequest {
         components.path = getPath(methodName: Methods.AdBlock)
         let adBlockEndPoint: URL = components.url!
         var request: URLRequest = URLRequest(url: adBlockEndPoint)
-        request.setValue(ua, forHTTPHeaderField: Header.header_user_agent.rawValue)
+        request.setValue(ua, forHTTPHeaderField: HeaderEnum.header_user_agent.rawValue)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // set headers
@@ -318,6 +316,7 @@ public final class DocereeAdRequest {
         task.resume()
 
     }
+
 }
 
 extension Data
