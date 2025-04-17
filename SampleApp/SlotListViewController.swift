@@ -39,53 +39,57 @@ class SlotListViewController: UIViewController, DocereeAdViewDelegate {
         switch adType {
         case "320 x 50":
             if environment == .Qa {
-                return "DOC-445-1" // QA
+                return "DOC-1012-1" // QA
 //                return "DOC_3198xll778ncs9" // QA
+            } else if environment == .Dev {
+                return "DOC_11rvfbjkjnwh8kk"
             } else {
-                return "DOC-1252-1" // Prod
-//                return "DOC-18-1" // QA
-//                return "DOC_fz2erpjkn5t3kws" // Dev
+                return "DOC-18-1" // Prod
+//                return "DOC_fz2erpjkn5t3kws" // Prod
             }
         case "320 x 100":
             if environment == .Qa {
-                return "DOC-447-1" // QA
+                return "DOC-1011-1" // QA
 //                return "DOC_3198xll778puay" // QA
             } else if environment == .Dev {
-                return "DOC_kvy1jkmzyjpd3" // Dev
+                return "DOC_11rvfbjkjnwhshu" // Dev
             } else {
                 return "DOC-15-1" // QA
 //                return "DOC_ddio9klbg5wzd2" // Practo API key
             }
         case "300 x 250":
             if environment == .Qa {
-                return "DOC-449-1" // QA
-//                return "DOC_3198xll778lhix" // QA
+                return "DOC-1009-1" // QA
             } else if environment == .Dev {
-                return "DOC_kvy1jkmzykpav" // Dev
+                return "DOC_11rvfbjkjnwi9bs" // Dev
             } else {
-                return "DOC-13-1" // QA
+                return "DOC-13-1" // Prod
 //                return "DOC_3y65rkl8vn21z2" // Locum Nest Test API key
             }
         case "468 x 60":
             if environment == .Qa {
-                return "DOC-446-1" // QA
-//                return "DOC_3198xll778r0t9" // QA
+                return "DOC-735-1" // QA
+            } else if environment == .Dev {
+                return "DOC_11rvfbjkjnwisi8"
             } else {
                 return "DOC-11-1" // QA
 //                return "DOC_fz2erpjkn5t7tar" // Dev
             }
         case "728 x 90":
             if environment == .Qa {
-                return "DOC-448-1" // QA
-//                return "DOC_3198xll778s0p6" // QA
+                return "DOC-736-1" // QA
+            } else if environment == .Dev {
+                return "DOC_11rvfbjkjnwjdkt"
             } else {
                 return "DOC-12-1" // QA
 //                return "DOC_kvy1jkmzym0u3" // Dev
             }
         case "300 x 50":
             if environment == .Qa {
-                return "DOC-445-1" // QA
+                return "DOC-1010-1" // QA
 //                return "DOC_3198xll778mhtn" //QA
+            } else if environment == .Dev {
+                return "DOC_1faragjla6d38zj"
             } else {
                 return "DOC_4kt10kl2u9g8ju" // Dev
             }

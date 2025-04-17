@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "125A5472EB3D501B6BA355069F43AE10"
-               BuildableName = "DocereeAdSdk.bundle"
-               BlueprintName = "DocereeAdSdk-DocereeAdSdk"
+               BlueprintIdentifier = "0F1FC470CA1799C3CD29347DB313E9C7"
+               BuildableName = "DocereeAdsSdk.bundle"
+               BlueprintName = "DocereeAdSdk-DocereeAdsSdk"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

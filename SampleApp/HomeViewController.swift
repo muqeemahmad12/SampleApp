@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
         let hcp = Hcp.HcpBuilder()
             .setFirstName(firstName: "John")
             .setLastName(lastName: "Doe")
-            .setSpecialization(specialization: "Pediatrics")
             .setOrganisation(organisation: "Apollo")
             .setCity(city: "Mumbai")
             .setZipCode(zipCode: "400004")
@@ -51,8 +50,6 @@ class HomeViewController: UIViewController {
             .setMobile(mobile: "9999999999")
             .setState(state: "Delhi")
             .setCountry(country: "India")
-            .setHcpId(hcpId: hcpId)
-            .setHashedHcpId(hashedHcpId: hcpId.sha256())
             .build()
         
         DocereeMobileAds.login(with: hcp)
