@@ -44,12 +44,7 @@ func getAdTypeBySize(adSize: AdSize) -> AdType {
 }
 
 func savePlatformuid(_ newPlatormuid: String) {
-    do {
-        let data = try NSKeyedArchiver.archivedData(withRootObject: newPlatormuid, requiringSecureCoding: false)
-        try data.write(to: URL(fileURLWithPath: PlatformArchivingUrl.path), options: .atomic)
-    } catch {
-        print("Failed to archive object: \(error)")
-    }
+    NSKeyedArchiver.archiveRootObject(newPlatormuid, toFile: PlatformArchivingUrl.path)
 }
 
 func getIdentifierForAdvertising() -> String? {
@@ -67,10 +62,6 @@ func getIdentifierForAdvertising() -> String? {
             return UIDevice.current.identifierForVendor?.uuidString
         }
     }
-}
-
-func getUUID() -> String? {
-    return UIDevice.current.identifierForVendor?.uuidString
 }
 
 struct RestEntity {
@@ -112,16 +103,4 @@ extension Bundle {
 /// ✅ Checks if the device is an iPad or has a large screen
 func isLargeScreen() -> Bool {
     return UIScreen.main.bounds.width > 600
-}
-
-var statusBarHeight: CGFloat {
-    if #available(iOS 13.0, *) {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let statusBarManager = windowScene.statusBarManager {
-            return statusBarManager.statusBarFrame.height
-        }
-        return 0
-    } else {
-        return UIApplication.shared.statusBarFrame.height
-    }
 }

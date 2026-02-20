@@ -11,7 +11,6 @@ import AppTrackingTransparency
 import AdSupport
 import UIKit
 #endif
-import os.log
 
 public final class DocereeMobileAds {
     
@@ -34,65 +33,28 @@ public final class DocereeMobileAds {
     }
     
     public static func login(with hcp: Hcp) {
-        do {
-            // Securely archive the Hcp object using NSKeyedArchiver
-            let data = try NSKeyedArchiver.archivedData(withRootObject: hcp, requiringSecureCoding: true)
-            
-            // Write the data to the file URL
-            try data.write(to: ProfileArchivingUrl, options: .atomic)
-            
-            // Send the data (assuming DocereeMobileAds is correctly set up)
-            DocereeMobileAds.shared().sendData()
-            
-        } catch {
-            print("ERROR: \(error.localizedDescription)")
-        }
+        NSKeyedArchiver.archiveRootObject(hcp, toFile: ProfileArchivingUrl.path)
+        DocereeMobileAds.shared().sendData()
+        DocereeMobileAds.shared().omInitialization()
     }
-
-    public static func setApplicationKey(_ key: String) {
-        do {
-            // Securely archive the string using NSKeyedArchiver
-            let data = try NSKeyedArchiver.archivedData(withRootObject: key, requiringSecureCoding: false)
-            
-            // Write the data to the file URL
-            try data.write(to: DocereeAdsIdArchivingUrl, options: .atomic)
-            
-        } catch {
-            print("ERROR: \(error.localizedDescription)")
-        }
+    
+    public static func setApplicationKey(_ key: String){
+        NSKeyedArchiver.archiveRootObject(key, toFile: DocereeAdsIdArchivingUrl.path)
     }
 
     public func getProfile() -> Hcp? {
         do {
             let data = try Data(contentsOf: ProfileArchivingUrl)
-            
-            // Define allowed classes directly using NSSet to bypass the Hashable issue
-            let allowedClasses = NSSet(array: [NSString.self, Hcp.self])
-            
-            // Use unarchivedObject(ofClasses:) and cast it to Hcp
-            let profile = try NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClasses as! Set<AnyHashable>, from: data) as? Hcp
-            
-            return profile
+            if let profile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Hcp {
+//                print(profile)
+                return profile
+            }
         } catch {
             print("ERROR: \(error.localizedDescription)")
-            return nil
         }
+        return nil
     }
     
-    func loadDocereeIdentifier(from url: URL) -> String? {
-        do {
-            let data = try Data(contentsOf: url)
-            return try NSKeyedUnarchiver.unarchivedObject(ofClass: NSString.self, from: data) as String?
-        } catch {
-            if #available(iOS 10.0, *) {
-                os_log("Error loading DocereeIdentifier: %@", log: .default, type: .error, error.localizedDescription)
-            } else {
-                print("Error loading DocereeIdentifier: \(error.localizedDescription)")
-            }
-            return nil
-        }
-    }
-
     public class func shared() -> DocereeMobileAds {
         return sharedNetworkManager
     }
@@ -161,5 +123,16 @@ public final class DocereeMobileAds {
 //        hcpView.loadData(hcpValidationRequest: HcpValidationRequest())
 //        return hcpView
 //    }
+    
+    func omInitialization() {
+        
+        // Activate the OMID SDK at earliest convenience
+        OMIDSessionInteractor.activateOMSDK()
+
+        // Prefetch the OMID JS Library
+        // The hosted javascript should be periodically (automatically) updated to the latest version on the hosting server
+        // This step might not be needed if the consumed Ads are WebView based with server side OMID injection
+        OMIDSessionInteractor.prefetchOMIDSDK()
+    }
 }
 
